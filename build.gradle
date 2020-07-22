@@ -1,0 +1,58 @@
+buildscript {
+    ext {
+        springBootVersion = '2.3.1.RELEASE'
+        springDependencyManagement = '1.0.9.RELEASE'
+        lombokVersion = '1.18.12'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:${springDependencyManagement}")
+    }
+}
+
+plugins {
+    id 'maven'
+    id 'java'
+    id 'idea'
+    id 'application'
+}
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Annotation
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // Compile
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-web-services'
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+
+    // Annotation Processors
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // Test compile
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+}
+
+application {
+    mainClassName = "org.example.MySpringBootApplication"
+}
