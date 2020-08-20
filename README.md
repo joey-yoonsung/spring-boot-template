@@ -27,3 +27,7 @@ Click the green play button in the MySpringBootApplication class.
 $ ./gradlew build
 $ ./gradlew run
 ```
+
+## Actuator
+1. health: `localhost:8081/actuator/health`
+2. prometheus: `localhost:8081/actuator/prometheus`
